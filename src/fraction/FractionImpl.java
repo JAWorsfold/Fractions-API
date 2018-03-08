@@ -1,6 +1,10 @@
 package fraction;
 
 public class FractionImpl implements Fraction {
+
+    private int numerator;
+    private int denominator;
+
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Normalize the fraction as you create it.
@@ -9,8 +13,8 @@ public class FractionImpl implements Fraction {
      *
      * The constructor should throw an <pre>ArithmeticException</pre> if the denominator is zero.
      *
-     * @param numerator
-     * @param denominator
+     * @param numerator representing the numerator before being normalized
+     * @param denominator representing the demoninator before being normalized
      */
     public FractionImpl(int numerator, int denominator) {
         // TODO
@@ -41,12 +45,39 @@ public class FractionImpl implements Fraction {
     }
 
     /**
+     * Parameters are the <em>numerator</em> and the <em>denominator</em>.
+     * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
+     * For instance, if the parameters are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
+     *
+     * @param numerator representing the numerator before being normalized
+     * @param denominator representing the denominator before being normalized
+     * @return GCD
+     */
+    private int computeGCD(int numerator, int denominator) {
+        //TODO
+    }
+
+    /**
+     * Parameters are the <em>numerator</em>, the <em>denominator</em>, and the <pre>Greatest Common Divisor</pre>
+     * <pre>(GCD)</pre>.
+     * Normalize and return the <pre>Fraction</pre> using the GCD.
+     * For instance, if the parameters are <pre>(8, 12)</pre>, create a <pre>Fraction</pre> with numerator
+     * <pre>2</pre> and denominator <pre>3</pre>.
+     *
+     * @param numerator representing the numerator before being normalized
+     * @param denominator representing the denominator before being normalized
+     * @param GCD representing the Greatest Common Divisor of the numerator and denoninator
+     * @return normalized Fraction
+     */
+    private Fraction normalizeFraction(int numerator, int denominator, int GCD) {
+        // TODO
+    }
+
+    /**
      * @inheritDoc
      */
     @Override
-    public Fraction add(Fraction f) {
-        return null;
-    }
+    public Fraction add(Fraction f) { return null; }
 
     /**
      * @inheritDoc
@@ -92,9 +123,7 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+    public int hashCode() { return super.hashCode(); }
 
     /**
      * @inheritDoc
