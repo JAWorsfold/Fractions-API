@@ -49,12 +49,14 @@ public class FractionImpl implements Fraction {
      * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
      * For instance, if the parameters are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
      *
-     * @param numerator representing the numerator before being normalized
-     * @param denominator representing the denominator before being normalized
      * @return GCD
      */
-    private int computeGCD(int numerator, int denominator) {
+    package private int computeGCD() {
         //TODO
+        //this.numerator;
+        //this.denominator;
+
+        return 0;
     }
 
     /**
@@ -69,8 +71,11 @@ public class FractionImpl implements Fraction {
      * @param GCD representing the Greatest Common Divisor of the numerator and denoninator
      * @return normalized Fraction
      */
-    private Fraction normalizeFraction(int numerator, int denominator, int GCD) {
-        // TODO
+    package private Fraction normalizeFraction() {
+        //TODO
+        //this.numerator;
+        //this.denominator;
+        //this.computeGCD();
     }
 
     /**
