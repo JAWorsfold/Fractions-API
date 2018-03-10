@@ -12,8 +12,9 @@ public class FractionTest {
     private FractionImpl f1;
     private FractionImpl f2;
     private FractionImpl f3;
-
-
+    //private FractionImpl ft1;
+    //private FractionImpl ft2;
+    //private FractionImpl ft3;
 
     @Before
     public void setUp() {
@@ -29,6 +30,14 @@ public class FractionTest {
         assertEquals(21, f2.computeGCD());
         assertEquals(1, f3.computeGCD());
     }
+
+    //@Test
+    //public void testNormalizeFraction() {
+    //    // how will I compare? Any fraction I make will automatically be normalized...
+    //    assertEquals(ft1, f1.normalizeFraction());
+    //    assertEquals(ft2, f2.normalizeFraction());
+    //    assertEquals(ft3, f3.normalizeFraction());
+    //}
 
     @Test
     public void testAdd() {

@@ -17,7 +17,9 @@ public class FractionImpl implements Fraction {
      * @param denominator representing the demoninator before being normalized
      */
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+        this.numerator = numerator;
+        this.denominator = denominator;
+        //TODO
     }
 
     /**
@@ -26,6 +28,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
+        this.numerator = wholeNumber;
+        this.denominator = 1;
         // TODO
     }
 
@@ -41,6 +45,9 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
+        // Deal with a single number String like "3"
+        // Deal with a String fraction like "3/4" - split based on the /
+        // Must make the numerator minus... (should this be in normalize?
         // TODO
     }
 
@@ -51,32 +58,30 @@ public class FractionImpl implements Fraction {
      *
      * @return GCD
      */
-    package private int computeGCD() {
-        //TODO
-        //this.numerator;
-        //this.denominator;
-
-        return 0;
+     int computeGCD() {
+        int numerator = this.numerator;
+        int denominator = this.denominator;
+        while (numerator != denominator) {
+            if (numerator > denominator) { numerator = numerator % denominator }
+            else { denominator = denominator % numerator }
+        }
+        return numerator;
     }
 
-    /**
-     * Parameters are the <em>numerator</em>, the <em>denominator</em>, and the <pre>Greatest Common Divisor</pre>
-     * <pre>(GCD)</pre>.
-     * Normalize and return the <pre>Fraction</pre> using the GCD.
-     * For instance, if the parameters are <pre>(8, 12)</pre>, create a <pre>Fraction</pre> with numerator
-     * <pre>2</pre> and denominator <pre>3</pre>.
-     *
-     * @param numerator representing the numerator before being normalized
-     * @param denominator representing the denominator before being normalized
-     * @param GCD representing the Greatest Common Divisor of the numerator and denoninator
-     * @return normalized Fraction
-     */
-    package private Fraction normalizeFraction() {
-        //TODO
-        //this.numerator;
-        //this.denominator;
-        //this.computeGCD();
-    }
+    // Not sure if this is necessary... It's included in the constructors for now
+    ///**
+    // * Parameters are the <em>numerator</em>, the <em>denominator</em>, and the <pre>Greatest Common Divisor</pre>
+    // * <pre>(GCD)</pre>.
+    // * Normalize and return the <pre>Fraction</pre> using the GCD.
+    // * For instance, if the parameters are <pre>(8, 12)</pre>, create a <pre>Fraction</pre> with numerator
+    // * <pre>2</pre> and denominator <pre>3</pre>.
+    // *
+    // * @return normalized Fraction
+    // */
+    //Fraction normalizeFraction() {
+    //    this.numerator = this.numerator / this.computeGCD();
+    //    this.denominator = this.denominator / this.computeGCD();
+    //}
 
     /**
      * @inheritDoc
