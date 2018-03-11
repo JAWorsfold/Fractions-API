@@ -6,15 +6,16 @@ package fraction;
 
 public class FractionTest {
 
-    private FractionImpl f1;
-    private FractionImpl f2;
-    private FractionImpl f3;
-    private FractionImpl f4;
-    private FractionImpl f5;
-    private FractionImpl f6;
-    private FractionImpl f7;
-    private FractionImpl f8;
-    private FractionImpl f9;
+    private Fraction f1;
+    private Fraction f2;
+    private Fraction f3;
+    private Fraction f4;
+    private Fraction f5;
+    private Fraction f6;
+    private Fraction f7;
+    private Fraction f8;
+    private Fraction f9;
+    private Fraction f10;
 
     @Before
     public void setUp() {
@@ -31,15 +32,15 @@ public class FractionTest {
 
     @Test
     public void testComputeGCD() {
-        assertEquals(4, f1.getGCD());
-        assertEquals(1, f2.getGCD());
-        assertEquals(21, f3.getGCD());
-        assertEquals(4, f4.getGCD());
-        assertEquals(6, f5.getGCD());
-        assertEquals(0, f6.getGCD());
-        assertEquals(1, f7.getGCD());
-        assertEquals(1, f8.getGCD());
-        assertEquals(2, f9.getGCD());
+        assertEquals(4, ((FractionImpl)f6).computeGCD(8, 12));
+        assertEquals(1, ((FractionImpl)f6).computeGCD(1, 2));
+        assertEquals(21, ((FractionImpl)f6).computeGCD(105, -252));
+        assertEquals(4, ((FractionImpl)f6).computeGCD(-8, 12));
+        assertEquals(6, ((FractionImpl)f6).computeGCD(0, 6));
+        assertEquals(1, ((FractionImpl)f6).computeGCD(0, 1));
+        assertEquals(1, ((FractionImpl)f6).computeGCD(2, 1));
+        assertEquals(1, ((FractionImpl)f6).computeGCD(-3, 1));
+        assertEquals(2, ((FractionImpl)f6).computeGCD(-2, 4));
     }
 
     @Test

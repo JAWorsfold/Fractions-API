@@ -6,37 +6,7 @@ package fraction;
  */
 public interface Fraction extends Comparable<Fraction> {
 
-    /**
-     * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
-     * For instance, if the instance variables are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
-     *
-     * @return GCD
-     */
-    public int computeGCD();
-
-    /**
-     * Getter method for the <pre>GCD</pre> instance variable to use for testing.
-     */
-    public int getGCD();
-
-    /**
-     * Normalize and return the <pre>Fraction</pre> using the GCD. If the denominator is given as a <pre>negative
-     * integer</pre>, make the numerator negative instead. <pre>Zero</pre> should be represented as <pre>0/1</pre>.
-     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
-     * <pre>-2</pre> and denominator <pre>3</pre>.
-     *
-     * @return new Fraction to use for testing
-     */
-    public void normalizeFraction();
-
-    /**
-     * Returns a new <pre>Fraction</pre> that is the <em>sum</em> of <pre>this</pre> and the parameter:
-     *  <pre>a/b + c/d</pre> is <pre>(ad + bc)/bd</pre>
-     *
-     * @param f the fraction to add to the current fraction
-     * @return the result of the addition
-     */
-    public Fraction add(FractionImpl f);
+    public Fraction add(Fraction f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>difference</em> of <pre>this</pre> minus the parameter
@@ -45,7 +15,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to subtract from the current fraction
      * @return the result of the subtraction
      */
-    public Fraction subtract(FractionImpl f);
+    public Fraction subtract(Fraction f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>product</em> of <pre>this</pre> and the parameter
@@ -54,7 +24,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to multiply with the current fraction
      * @return the result of the multiplication
      */
-    public Fraction multiply(FractionImpl f);
+    public Fraction multiply(Fraction f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>quotient</em> of dividing <pre>this</pre> by the parameter
@@ -63,7 +33,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to take part in the division
      * @return the result of the division
      */
-    public Fraction divide(FractionImpl f);
+    public Fraction divide(Fraction f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>absolute value</em> of <pre>this</pre> fraction
@@ -95,7 +65,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @return whether the true fractions are equal
      */
     @Override
-    public boolean equals(Object o);
+    public boolean equals(Object obj);
 
     /**
      * Returns:
