@@ -105,6 +105,30 @@ public class FractionTest {
     }
 
     @Test
+    public void testNegate() {
+        assertEquals(new FractionImpl(-8, 12), f1.negate());
+        assertEquals(new FractionImpl(-1, 2), f2.negate());
+        assertEquals(new FractionImpl(105, 252), f3.negate());
+        assertEquals(new FractionImpl(8, 12), f4.negate());
+        assertEquals(new FractionImpl(-0, 1), f5.negate());
+        assertEquals(new FractionImpl(-0, 1), f6.negate());
+        assertEquals(new FractionImpl(-2, 1), f7.negate());
+        assertEquals(new FractionImpl(3, 1), f8.negate());
+        assertEquals(new FractionImpl(1, 2), f9.negate());
+    }
+
+    @Test
+    public void testInverse() {
+        assertEquals(new FractionImpl(12, 8), f1.inverse());
+        assertEquals(new FractionImpl(2, 1), f2.inverse());
+        assertEquals(new FractionImpl(-252, 105), f3.inverse());
+        assertEquals(new FractionImpl(-12, 8), f4.inverse());
+        assertEquals(new FractionImpl(1, 2), f7.inverse());
+        assertEquals(new FractionImpl(-1, 3), f8.inverse());
+        assertEquals(new FractionImpl(-2, 1), f9.inverse());
+    }
+
+    @Test
     public void testToString() {
         assertEquals("2/3", f1.toString());
         assertEquals("1/2", f2.toString());
@@ -121,6 +145,8 @@ public class FractionTest {
     public void testDivideByZero() {
         Fraction f = new FractionImpl(3, 0);
         Fraction f1 = new FractionImpl("-5/0");
+        f5.inverse();
+        f6.inverse();
     }
 
     @Test(expected = NumberFormatException.class)

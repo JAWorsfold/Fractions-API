@@ -158,7 +158,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+        if (numerator < 0) {
+            return new FractionImpl(Math.abs(numerator), denominator);
+        } else {
+            return new FractionImpl(-numerator, denominator);
+        }
     }
 
     /**
@@ -194,7 +198,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        return null;
+        if (numerator == 0) {
+            throw new ArithmeticException("Divide by zero");
+        } else {
+            return new FractionImpl(denominator, numerator);
+        }
     }
 
     /**
