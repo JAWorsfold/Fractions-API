@@ -129,6 +129,16 @@ public class FractionTest {
     }
 
     @Test
+    public void testCompareTo() {
+        assertEquals(1, f1.compareTo(f2));
+        assertEquals(1, f1.compareTo(f9));
+        assertEquals(1, f2.compareTo(f3));
+        assertEquals(-1, f3.compareTo(f7));
+        assertEquals(1, f4.compareTo(f8));
+        assertEquals(0, f5.compareTo(f6));
+    }
+
+    @Test
     public void testToString() {
         assertEquals("2/3", f1.toString());
         assertEquals("1/2", f2.toString());
