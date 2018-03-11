@@ -146,7 +146,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction abs() {
-        return null;
+        if (numerator < 0) {
+            return new FractionImpl(Math.abs(numerator), denominator);
+        } else {
+            return new FractionImpl(numerator, denominator);
+        }
     }
 
     /**
@@ -212,8 +216,4 @@ public class FractionImpl implements Fraction {
             return numerator + "/" + denominator;
         }
     }
-
-    public static void main(String[] args) {
-    }
-
 }

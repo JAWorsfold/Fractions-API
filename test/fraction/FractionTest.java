@@ -92,6 +92,19 @@ public class FractionTest {
     }
 
     @Test
+    public void testAbs() {
+        assertEquals(new FractionImpl(8, 12), f1.abs());
+        assertEquals(new FractionImpl(1, 2), f2.abs());
+        assertEquals(new FractionImpl(105, 252), f3.abs());
+        assertEquals(new FractionImpl(8, 12), f4.abs());
+        assertEquals(new FractionImpl(0, 1), f5.abs());
+        assertEquals(new FractionImpl(0, 1), f6.abs());
+        assertEquals(new FractionImpl(2, 1), f7.abs());
+        assertEquals(new FractionImpl(3, 1), f8.abs());
+        assertEquals(new FractionImpl(1, 2), f9.abs());
+    }
+
+    @Test
     public void testToString() {
         assertEquals("2/3", f1.toString());
         assertEquals("1/2", f2.toString());
