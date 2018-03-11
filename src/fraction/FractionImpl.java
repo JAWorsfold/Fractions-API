@@ -1,9 +1,13 @@
 package fraction;
 
+import java.sql.SQLOutput;
+import java.util.Objects;
+
 public class FractionImpl implements Fraction {
 
     private int numerator;
     private int denominator;
+    private int GCD;
 
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
@@ -20,7 +24,8 @@ public class FractionImpl implements Fraction {
         if (denominator == 0) { throw new ArithmeticException("Divide by zero"); }
         this.numerator = numerator;
         this.denominator = denominator;
-        this.normalizeFraction();
+        normalizeFraction();
+
     }
 
     /**
@@ -45,49 +50,56 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        // Deal with a single number String like "3"
-        // Deal with a String fraction like "3/4" - split based on the /
-        // Must make the numerator minus... (should this be in normalize?
-
+        if (fraction.length() < 3) {
+            numerator = Integer.parseInt(fraction);
+            denominator = 1;
+        } else {
+            String[] f = fraction.split("/");
+            numerator = Integer.parseInt(f[0]);
+            if (Integer.parseInt(f[1]) == 0) { throw new ArithmeticException("Divide by zero"); }
+            else {
+                denominator = Integer.parseInt(f[1]);
+            }
+        }
+        normalizeFraction();
     }
 
     /**
-     * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
-     * For instance, if the instance variables are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
-     *
-     * @return GCD
+     * @inheritDoc
      */
-     int computeGCD() {
-        int numerator = this.numerator;
-        int denominator = this.denominator;
-        int temporary;
-        while (denominator != 0) {
-            temporary = denominator;
-            denominator = numerator % denominator;
-            numerator = temporary;
+     @Override
+     public int computeGCD() {
+        int n = numerator;
+        int d = denominator;
+        int temp;
+        while (d != 0) {
+            temp = d;
+            d = n % d;
+            n = temp;
         }
-        return numerator;
+        return Math.abs(n);
     }
 
-    // Not sure if this is necessary... It's included in the constructors for now
-    // Changed my mind --- also need to normalise the numerator as the negative number...
-    // Also - zero must be represented as 0/1... i.e. "0", "0/2", 0, 2 etc.
+    public int getGCD() {
+         return GCD;
+    }
+
     /**
-     * Normalize and return the <pre>Fraction</pre> using the GCD. If the denominator is given as a <pre>negative
-     * integer</pre>, make the numerator negative instead. <pre>Zero</pre> should be represented as <pre>0/1</pre>.
-     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
-     * <pre>-2</pre> and denominator <pre>3</pre>.
-     *
+     * @inheritDoc
      */
-    void normalizeFraction() {
-        if (this.denominator < 0) {
-            this.denominator = +this.denominator;
-            this.numerator = -this.numerator;
+    @Override
+    public void normalizeFraction() {
+        GCD = computeGCD();
+        if (denominator < 0) {
+            denominator = Math.abs(denominator);
+            numerator = -numerator;
         }
-
-        //this.numerator = this.numerator / this.computeGCD();
-        //this.denominator = this.denominator / this.computeGCD();
-
+        if (numerator == 0 && denominator > 1) {
+            denominator = 1;
+        } else {
+            numerator = numerator / GCD;
+            denominator = denominator / GCD;
+        }
     }
 
     /**
@@ -140,18 +152,20 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int hashCode() { return super.hashCode(); }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FractionImpl fraction = (FractionImpl) o;
+        return numerator == fraction.numerator &&
+                denominator == fraction.denominator;
+    }
 
     /**
      * @inheritDoc
      */
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof FractionImpl) {
-            FractionImpl f = (FractionImpl) obj;
-            return this.numerator == f.numerator && this.denominator == f.denominator;
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
     }
 
     /**
@@ -183,6 +197,14 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        return null;
+        if (denominator == 1) {
+            return Integer.toString(numerator);
+        } else {
+            return numerator + "/" + denominator;
+        }
     }
+
+    public static void main(String[] args) {
+    }
+
 }

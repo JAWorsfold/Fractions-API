@@ -7,6 +7,29 @@ package fraction;
 public interface Fraction extends Comparable<Fraction> {
 
     /**
+     * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
+     * For instance, if the instance variables are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
+     *
+     * @return GCD
+     */
+    public int computeGCD();
+
+    /**
+     * Getter method for the <pre>GCD</pre> instance variable to use for testing.
+     */
+    public int getGCD();
+
+    /**
+     * Normalize and return the <pre>Fraction</pre> using the GCD. If the denominator is given as a <pre>negative
+     * integer</pre>, make the numerator negative instead. <pre>Zero</pre> should be represented as <pre>0/1</pre>.
+     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
+     * <pre>-2</pre> and denominator <pre>3</pre>.
+     *
+     * @return new Fraction to use for testing
+     */
+    public void normalizeFraction();
+
+    /**
      * Returns a new <pre>Fraction</pre> that is the <em>sum</em> of <pre>this</pre> and the parameter:
      *  <pre>a/b + c/d</pre> is <pre>(ad + bc)/bd</pre>
      *
