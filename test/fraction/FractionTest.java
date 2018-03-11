@@ -6,19 +6,15 @@ package fraction;
 
 public class FractionTest {
 
-    // complete the tests and add more
-
-    private Fraction f1;
-    private Fraction f2;
-    private Fraction f3;
-    private Fraction f4;
-    private Fraction f5;
-    private Fraction f6;
-    private Fraction f7;
-    private Fraction f8;
-    private Fraction f9;
-    private Fraction f10;
-
+    private FractionImpl f1;
+    private FractionImpl f2;
+    private FractionImpl f3;
+    private FractionImpl f4;
+    private FractionImpl f5;
+    private FractionImpl f6;
+    private FractionImpl f7;
+    private FractionImpl f8;
+    private FractionImpl f9;
 
     @Before
     public void setUp() {
@@ -31,7 +27,6 @@ public class FractionTest {
         f7 = new FractionImpl("2");
         f8 = new FractionImpl("-3");
         f9 = new FractionImpl("-2/4");
-
     }
 
     @Test
@@ -60,15 +55,40 @@ public class FractionTest {
         assertEquals(new FractionImpl(-1, 2), f9);
     }
 
-    @Test(expected = NumberFormatException.class)
-    public void testNonLegalInteger() {
-        Fraction f = new FractionImpl("--");
-        Fraction f1 = new FractionImpl("--/12");
+    @Test
+    public void testAdd() {
+        assertEquals(new FractionImpl(7, 6), f1.add(f2));
+        assertEquals(new FractionImpl(1, 6), f1.add(f9));
+        assertEquals(new FractionImpl(1, 12), f2.add(f3));
+        assertEquals(new FractionImpl(19, 12), f3.add(f7));
+        assertEquals(new FractionImpl(-11, 3), f4.add(f8));
     }
 
     @Test
-    public void testAdd() {
-        // Tests that are expected to succeed or fail
+    public void testSubtract() {
+        assertEquals(new FractionImpl(1, 6), f1.subtract(f2));
+        assertEquals(new FractionImpl(7, 6), f1.subtract(f9));
+        assertEquals(new FractionImpl(11, 12), f2.subtract(f3));
+        assertEquals(new FractionImpl(-29, 12), f3.subtract(f7));
+        assertEquals(new FractionImpl(7, 3), f4.subtract(f8));
+    }
+
+    @Test
+    public void testMultiply() {
+        assertEquals(new FractionImpl(1, 3), f1.multiply(f2));
+        assertEquals(new FractionImpl(-1, 3), f1.multiply(f9));
+        assertEquals(new FractionImpl(-5, 24), f2.multiply(f3));
+        assertEquals(new FractionImpl(-5, 6), f3.multiply(f7));
+        assertEquals(new FractionImpl(2, 1), f4.multiply(f8));
+    }
+
+    @Test
+    public void testDivide() {
+        assertEquals(new FractionImpl(4, 3), f1.divide(f2));
+        assertEquals(new FractionImpl(-4, 3), f1.divide(f9));
+        assertEquals(new FractionImpl(-6, 5), f2.divide(f3));
+        assertEquals(new FractionImpl(-5, 24), f3.divide(f7));
+        assertEquals(new FractionImpl(2, 9), f4.divide(f8));
     }
 
     @Test
@@ -82,14 +102,17 @@ public class FractionTest {
         assertEquals("2", f7.toString());
         assertEquals("-3", f8.toString());
         assertEquals("-1/2", f9.toString());
-
     }
 
     @Test(expected = ArithmeticException.class)
     public void testDivideByZero() {
         Fraction f = new FractionImpl(3, 0);
         Fraction f1 = new FractionImpl("-5/0");
+    }
 
-        //FractionImpl f = new FractionImpl("3/0");
+    @Test(expected = NumberFormatException.class)
+    public void testNonLegalInteger() {
+        Fraction f = new FractionImpl("--");
+        Fraction f1 = new FractionImpl("--/12");
     }
 }

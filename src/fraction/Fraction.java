@@ -36,7 +36,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to add to the current fraction
      * @return the result of the addition
      */
-    public Fraction add(Fraction f);
+    public Fraction add(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>difference</em> of <pre>this</pre> minus the parameter
@@ -45,7 +45,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to subtract from the current fraction
      * @return the result of the subtraction
      */
-    public Fraction subtract(Fraction f);
+    public Fraction subtract(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>product</em> of <pre>this</pre> and the parameter
@@ -54,7 +54,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to multiply with the current fraction
      * @return the result of the multiplication
      */
-    public Fraction multiply(Fraction f);
+    public Fraction multiply(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>quotient</em> of dividing <pre>this</pre> by the parameter
@@ -63,7 +63,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to take part in the division
      * @return the result of the division
      */
-    public Fraction divide(Fraction f);
+    public Fraction divide(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>absolute value</em> of <pre>this</pre> fraction

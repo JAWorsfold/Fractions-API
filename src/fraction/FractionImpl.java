@@ -25,7 +25,6 @@ public class FractionImpl implements Fraction {
         this.numerator = numerator;
         this.denominator = denominator;
         normalizeFraction();
-
     }
 
     /**
@@ -106,30 +105,40 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public Fraction add(Fraction f) { return null; }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Fraction subtract(Fraction f) {
-        return null;
+    public Fraction add(FractionImpl f) {
+        int n = (this.numerator*f.denominator + this.denominator*f.numerator);
+        int d = this.denominator*f.denominator;
+        return new FractionImpl(n, d);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public Fraction multiply(Fraction f) {
-        return null;
+    public Fraction subtract(FractionImpl f) {
+        int n = (this.numerator*f.denominator - this.denominator*f.numerator);
+        int d = this.denominator*f.denominator;
+        return new FractionImpl(n, d);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public Fraction divide(Fraction f) {
-        return null;
+    public Fraction multiply(FractionImpl f) {
+        int n = this.numerator*f.numerator;
+        int d = this.denominator*f.denominator;
+        return new FractionImpl(n, d);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Fraction divide(FractionImpl f) {
+        int n = this.numerator*f.denominator;
+        int d = this.denominator*f.numerator;
+        return new FractionImpl(n, d);
     }
 
     /**
