@@ -61,7 +61,7 @@ public interface Fraction extends Comparable<Fraction> {
      * Returns <pre>true</pre> if <pre>o</pre> is a <pre>Fraction</pre> equal to <pre>this</pre>,
      * and <pre>false</pre> in all other cases.
      *
-     * @param o the object to compare this one to
+     * @param obj the object to compare this one to
      * @return whether the true fractions are equal
      */
     @Override
