@@ -17,9 +17,10 @@ public class FractionImpl implements Fraction {
      * @param denominator representing the demoninator before being normalized
      */
     public FractionImpl(int numerator, int denominator) {
+        if (denominator == 0) { throw new ArithmeticException("Divide by zero"); }
         this.numerator = numerator;
         this.denominator = denominator;
-        //TODO
+        this.normalizeFraction();
     }
 
     /**
@@ -30,7 +31,6 @@ public class FractionImpl implements Fraction {
     public FractionImpl(int wholeNumber) {
         this.numerator = wholeNumber;
         this.denominator = 1;
-        // TODO
     }
 
     /**
@@ -48,40 +48,47 @@ public class FractionImpl implements Fraction {
         // Deal with a single number String like "3"
         // Deal with a String fraction like "3/4" - split based on the /
         // Must make the numerator minus... (should this be in normalize?
-        // TODO
+
     }
 
     /**
-     * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Compute the <pre>Greatest Common Divisor (GCD)</pre>.
-     * For instance, if the parameters are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
+     * For instance, if the instance variables are <pre>(8, 12)</pre>, return the <pre>Integer</pre> <pre>4</pre>.
      *
      * @return GCD
      */
      int computeGCD() {
         int numerator = this.numerator;
         int denominator = this.denominator;
-        while (numerator != denominator) {
-            if (numerator > denominator) { numerator = numerator % denominator }
-            else { denominator = denominator % numerator }
+        int temporary;
+        while (denominator != 0) {
+            temporary = denominator;
+            denominator = numerator % denominator;
+            numerator = temporary;
         }
         return numerator;
     }
 
     // Not sure if this is necessary... It's included in the constructors for now
-    ///**
-    // * Parameters are the <em>numerator</em>, the <em>denominator</em>, and the <pre>Greatest Common Divisor</pre>
-    // * <pre>(GCD)</pre>.
-    // * Normalize and return the <pre>Fraction</pre> using the GCD.
-    // * For instance, if the parameters are <pre>(8, 12)</pre>, create a <pre>Fraction</pre> with numerator
-    // * <pre>2</pre> and denominator <pre>3</pre>.
-    // *
-    // * @return normalized Fraction
-    // */
-    //Fraction normalizeFraction() {
-    //    this.numerator = this.numerator / this.computeGCD();
-    //    this.denominator = this.denominator / this.computeGCD();
-    //}
+    // Changed my mind --- also need to normalise the numerator as the negative number...
+    // Also - zero must be represented as 0/1... i.e. "0", "0/2", 0, 2 etc.
+    /**
+     * Normalize and return the <pre>Fraction</pre> using the GCD. If the denominator is given as a <pre>negative
+     * integer</pre>, make the numerator negative instead. <pre>Zero</pre> should be represented as <pre>0/1</pre>.
+     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
+     * <pre>-2</pre> and denominator <pre>3</pre>.
+     *
+     */
+    void normalizeFraction() {
+        if (this.denominator < 0) {
+            this.denominator = +this.denominator;
+            this.numerator = -this.numerator;
+        }
+
+        //this.numerator = this.numerator / this.computeGCD();
+        //this.denominator = this.denominator / this.computeGCD();
+
+    }
 
     /**
      * @inheritDoc
@@ -140,7 +147,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj instanceof FractionImpl) {
+            FractionImpl f = (FractionImpl) obj;
+            return this.numerator == f.numerator && this.denominator == f.denominator;
+        }
+        return false;
     }
 
     /**
